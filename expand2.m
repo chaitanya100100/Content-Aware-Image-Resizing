@@ -2,14 +2,14 @@ clear all ;
 
 im = imread('./images/Broadway_tower_edit.jpg') ;
 [M, N, chn] = size(im) ;
-FM = M / 2 ; FN = N - 1 ;
+FM = M ; FN = N + 200 ;
 
 OM = M ; ON = N ;
 
 % traverse until we get desired width
-while N > FN
-    
-    cost = get_cost_gradient(im) ;
+while N < FN
+
+    cost = get_cost_gradient(uint8(im)) ;
     dp = zeros(M, N) ;
     from = zeros(M, N) ;
     dp(1, :) = cost(1, :) ;
@@ -32,12 +32,14 @@ while N > FN
     end
     
     [~, idx] = min(dp(M, :)) ;
+    new_im = zeros(M, N + 1, chn) ;
     for i = M : -1 : 1
-        im(i, idx : N - 1, :) = im(i, idx + 1 : N, :) ;
+        new_im(i, 1 : idx, :) = im(i, 1 : idx, :) ;
+        new_im(i, idx + 1 : N + 1, :) = im(i, idx : N, :) ;
         idx = from(i, idx) ;
     end
-    im = im(:, 1 : N - 1, :) ;
-    N = N - 1 ;
+    im = new_im ;
+    N = N + 1 ;
 end
 
 imshow(uint8(im)) ;
