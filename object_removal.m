@@ -50,3 +50,5 @@ while N > FN
     end
     N = N - 1 ;
 end
+
+%imshow(uint8(im));
