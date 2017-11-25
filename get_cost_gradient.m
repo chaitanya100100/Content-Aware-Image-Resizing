@@ -9,5 +9,4 @@ function G_im = get_cost_gradient(im)
     [grad_x,grad_y] = gradient(im);
     G_im = grad_x + grad_y;
     G_im = abs(G_im);
-
 end

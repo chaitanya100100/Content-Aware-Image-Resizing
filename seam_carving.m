@@ -4,6 +4,8 @@ im = imread('./images/Broadway_tower_edit.jpg') ;
 [M, N, chn] = size(im) ;
 FM = M / 2 ; FN = N - 1 ;
 
+FM = M / 2 ; FN = N - 30 ;
+
 OM = M ; ON = N ;
 
 % traverse until we get desired width
