@@ -2,7 +2,10 @@ clear all ;
 
 im = double(imread('Broadway_tower_edit.jpg')) ;
 [M, N, chn] = size(im) ;
-FM = M / 2 ; FN = N - 30 ;
+
+im(720:800,100:147,:) = -1e5;
+
+FM = M / 2 ; FN = N - 100 ;
 
 OM = M ; ON = N ;
 
