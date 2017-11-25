@@ -1,11 +1,10 @@
 clear all ;
 
-im = imread('./images/Broadway_tower_edit.jpg') ;
+im = double(imread('Broadway_tower_edit.jpg')) ;
 [M, N, chn] = size(im) ;
 
 im(720:800,100:147,:) = -1e5;
 
-st_x = 720;st_y = 800;end_x = 100;end_y = 147;
 FM = M / 2 ; FN = N - 100;
 
 OM = M ; ON = N ;
@@ -14,10 +13,6 @@ OM = M ; ON = N ;
 while N > FN
     
     cost = get_cost_gradient(im) ;
-    if(end_y > end_x)
-        cost(st_x:st_y,end_x:end_y) = -1e5;
-    end
-    
     dp = zeros(M, N) ;
     from = zeros(M, N) ;
     dp(1, :) = cost(1, :) ;
@@ -45,8 +40,5 @@ while N > FN
         idx = from(i, idx) ;
     end
     im = im(:, 1 : N - 1, :) ;
-    if(end_y >= end_x)
-        end_y = end_y - 1;
-    end
     N = N - 1 ;
 end
