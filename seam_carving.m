@@ -1,8 +1,8 @@
 clear all ;
 
-im = double(imread('Broadway_tower_edit.jpg')) ;
+im = imread('./images/Broadway_tower_edit.jpg') ;
 [M, N, chn] = size(im) ;
-FM = M / 2 ; FN = N - 30 ;
+FM = M / 2 ; FN = N - 300 ;
 
 OM = M ; ON = N ;
 
@@ -40,3 +40,5 @@ while N > FN
     N = N - 1 ;
     
 end
+
+imshow(uint8(im)) ;
