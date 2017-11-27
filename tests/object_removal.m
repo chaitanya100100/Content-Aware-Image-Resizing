@@ -1,30 +1,23 @@
 clear all ;
 
-im = imread('./images/dog/dog.jpg') ;
+im = imread('./images/shore/shore.jpg') ;
 [M, N, chn] = size(im) ;
 
+% for broadway_tower
+% im(720:800,100:147,:) = -1e5;
+% st_x = 720;st_y = 800;end_x = 100;end_y = 147;
 
-FM = M ; FN = N - 75;
+FM = M ; FN = N - 100;
 
 OM = M ; ON = N ;
-
-mask = zeros(M, N) ;
-
-% for broadway_tower
-% mask(720:800,100:147) = 1;
-
-% for shore
-% mask(115:165, 350:370) = 1;
-
-% for dog
-% mask(120:300, 170:230) = 1;
-mask(120:220, 170:230) = 1;
 
 % traverse until we get desired width
 while N > FN
     
     cost = get_cost_gradient(im) ;
-    cost(mask == 1) = -1e5 ;
+    if(end_y > end_x)
+        cost(st_x:st_y,end_x:end_y) = -1e5;
+    end
     
     dp = zeros(M, N) ;
     from = zeros(M, N) ;
@@ -50,13 +43,13 @@ while N > FN
     [~, idx] = min(dp(M, :)) ;
     for i = M : -1 : 1
         im(i, idx : N - 1, :) = im(i, idx + 1 : N, :) ;
-        mask(i, idx : N - 1, :) = mask(i, idx + 1 : N, :) ;
         idx = from(i, idx) ;
     end
     im = im(:, 1 : N - 1, :) ;
-    mask = mask(:, 1 : N - 1, :) ;
-    
+    if(end_y >= end_x)
+        end_y = end_y - 1;
+    end
     N = N - 1 ;
 end
 
-imshow(uint8(im));
+%imshow(uint8(im));

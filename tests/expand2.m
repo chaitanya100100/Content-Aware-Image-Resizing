@@ -1,8 +1,8 @@
 clear all ;
 
-im = imread('./images/Broadway_tower_edit.jpg') ;
+im = imread('./images/lake/lake_seamcut.jpg') ;
 [M, N, chn] = size(im) ;
-FM = M ; FN = N + 200 ;
+FM = M ; FN = N + 50 ;
 
 OM = M ; ON = N ;
 
@@ -35,7 +35,8 @@ while N < FN
     new_im = zeros(M, N + 1, chn) ;
     for i = M : -1 : 1
         new_im(i, 1 : idx, :) = im(i, 1 : idx, :) ;
-        new_im(i, idx + 1 : N + 1, :) = im(i, idx : N, :) ;
+        new_im(i, idx + 1, :) = (im(i, idx, :) + im(i, idx + 1, :)) / 2 ;
+        new_im(i, idx + 2 : N + 1, :) = im(i, idx + 1 : N, :) ;
         idx = from(i, idx) ;
     end
     im = new_im ;
