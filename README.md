@@ -15,12 +15,9 @@ two types of cost functions are implemented
 - ![seam_carving.m](seam_carving.m) does reduction in width using seam carving
 - results below are for gradient cost matrix
 
-| original width : 1428 pixels | reduced width : 1128 pixels |
-| -- | -- |
-| ![images/broadway_tower/Broadway_tower_edit.jpg](images/broadway_tower/Broadway_tower_edit.jpg) | ![images/broadway_tower/Broadway_tower_edit.jpg](images/broadway_tower/Broadway_tower_edit_width_300.jpg) |
-| reduced width : 714 pixels | reduced width : 476 pixels |
-| -- | -- |
-| ![images/broadway_tower/Broadway_tower_edit.jpg](images/broadway_tower/Broadway_tower_edit_width_half.jpg) | ![images/broadway_tower/Broadway_tower_edit.jpg](images/broadway_tower/Broadway_tower_edit_width_one_third.jpg) |
+| original width : 1428 pixels | reduced width : 1128 pixels | reduced width : 714 pixels | reduced width : 476 pixels |
+| -- | -- | -- | -- |
+| ![images/broadway_tower/Broadway_tower_edit.jpg](images/broadway_tower/Broadway_tower_edit.jpg) | ![images/broadway_tower/Broadway_tower_edit.jpg](images/broadway_tower/Broadway_tower_edit_width_300.jpg) | ![images/broadway_tower/Broadway_tower_edit.jpg](images/broadway_tower/Broadway_tower_edit_width_half.jpg) | ![images/broadway_tower/Broadway_tower_edit.jpg](images/broadway_tower/Broadway_tower_edit_width_one_third.jpg) |
 
 - per pixel entropy generally works better than gradient but it is computationally expensive
 
@@ -35,9 +32,11 @@ two types of cost functions are implemented
 | original width : 1428 pixels | increased width : 2142 pixels |
 | -- | -- |
 | ![images/broadway_tower/Broadway_tower_edit.jpg](images/broadway_tower/Broadway_tower_edit.jpg) | ![images/broadway_tower/width_plus_700.jpg](images/broadway_tower/width_plus_700.jpg) |
+
 | original width : 464 pixels | increased width : 696 pixels |
 | -- | -- |
 | ![images/street/street.jpg](images/street/street.jpg) | ![images/street/street_width_plus_230.jpg](images/street/street_width_plus_230.jpg) |
+
 | original width : 520 pixels | increased width : 2128 pixels |
 | -- | -- |
 | ![images/wave/wave.jpg](images/wave/wave.jpg) | ![images/wave/wave_width_plus_230.jpg](images/wave/wave_width_plus_230.jpg) |
@@ -46,9 +45,10 @@ two types of cost functions are implemented
 - ![object_removal.m](object_removal.m) resize the image in such a way that specific object in the image is removed smoothly
 - bounding box over the object is given and the cost values of the pixels in the bounding box are made negative infinite to make every seam pass through the object
 
-| original | deleted object |
+| original | object removed |
 | -- | -- |
 | ![images/broadway_tower/Broadway_tower_edit.jpg](images/broadway_tower/Broadway_tower_edit.jpg) | ![images/broadway_tower/Broadway_tower_edit.jpg](images/broadway_tower/person_removed.jpg) |
-| original | deleted object |
+
+| original | object removed |
 | -- | -- |
 | ![images/dog/dog.jpg](images/dog/dog.jpg) | ![images/dog/remove.jpg](images/dog/remove.jpg) |
